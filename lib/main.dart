@@ -174,7 +174,14 @@ class DetailApp extends StatelessWidget {
         body: BlocBuilder<DetailCubit, DetailModel>(builder: (context, dtl) {
           context.read<DetailCubit>().fetchData(id: id);
           return Column(
-            children: [Text("Nama UMKM: ${id}")],
+            children: [
+              Text("Nama UMKM: ${dtl.nama}"),
+              Text("Jenis UMKM: ${dtl.jenis}"),
+              Text("Omzet UMKM: ${dtl.omzet}"),
+              Text("Lama UMKM: ${dtl.lama}"),
+              Text("Member UMKM: ${dtl.member}"),
+              Text("Pinjam UMKM: ${dtl.pinjam}"),
+            ],
           );
         }),
       ),
@@ -259,8 +266,13 @@ class MyHomePage extends StatelessWidget {
                               ),
                               trailing: Icon(Icons.more_vert),
                               onTap: () {
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (context) {
+                                // Navigator.of(context)
+                                //     .push(MaterialPageRoute(builder: (context) {
+                                //   return DetailApp(
+                                //       id: umkmCubit.listUMKM[index].id);
+                                // }));
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
                                   return DetailApp(
                                       id: umkmCubit.listUMKM[index].id);
                                 }));
